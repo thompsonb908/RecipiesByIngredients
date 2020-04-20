@@ -29,7 +29,7 @@
             android:layout_marginTop="10dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Username" />
+            android:hint="Email" />
 
         <EditText
             android:id="@+id/log_password"
@@ -41,15 +41,16 @@
             android:hint="Password"/>
         <Button
             android:layout_marginTop="20dp"
-            android:id="@+id/log_register"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Register"/>
-        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/log_login"
             android:text="Login"/>
+        <Button
+            android:id="@+id/log_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register"/>
+
 
 
     </LinearLayout>
