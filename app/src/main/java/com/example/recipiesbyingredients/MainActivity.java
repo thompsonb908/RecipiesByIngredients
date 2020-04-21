@@ -13,6 +13,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.recipiesbyingredients.firebase.Recipies;
+import com.example.recipiesbyingredients.fragments.dialogs.RecipeDescription;
 import com.example.recipiesbyingredients.fragments.dialogs.EditIngredientFragment;
 import com.example.recipiesbyingredients.fragments.IngredientsFragment;
 import com.example.recipiesbyingredients.fragments.IngredientsPageFragment;
@@ -20,15 +21,15 @@ import com.example.recipiesbyingredients.fragments.RecipeFragment;
 import com.example.recipiesbyingredients.fragments.SavedFragment;
 import com.example.recipiesbyingredients.fragments.SearchFragment;
 import com.example.recipiesbyingredients.models.Ingredient;
+import com.example.recipiesbyingredients.models.Recipie;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
-import com.example.recipiesbyingredients.dummy.DummyContent;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity implements RecipeFragment.OnRecipeListFragmentInteractionListener, IngredientsFragment.OnIngredientsListFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements RecipeFragment.OnRecipeListFragmentInteractionListener, IngredientsFragment.OnIngredientsListFragmentInteractionListener, RecipeDescription.OnRecipeDescriptionFragmentInteractionListener {
 
     private FirebaseAuth mAuth;
 
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements RecipeFragment.On
         }
 
         FirebaseUser user = mAuth.getCurrentUser();
-        Toast.makeText(this,"Welcom " + user.getEmail(), Toast.LENGTH_LONG);
+        Toast.makeText(this,"Welcome " + user.getEmail(), Toast.LENGTH_LONG);
 
         Recipies.search("Test");
 
@@ -66,11 +67,15 @@ public class MainActivity extends AppCompatActivity implements RecipeFragment.On
     }
 
     //Saved Recipe is Selected
-    public void OnRecipeListFragmentInteractionListener(DummyContent.DummyItem item) {
-        Log.d("Recipe List Select", "Item: " + item.id);
-        Toast toast = Toast.makeText(this, "Item "+ item.id + " selected", Toast.LENGTH_LONG);
-        toast.setDuration(Toast.LENGTH_SHORT);
-        toast.show();
+    //TODO Link to Recipe Description fragment
+    public void OnRecipeListFragmentInteractionListener(Recipie item) {
+            //Creating a new intent to start the other activity.
+            DialogFragment dialog = new RecipeDescription();
+            Bundle recipeArgs = new Bundle();
+            recipeArgs.putString("name", item.getName());
+            dialog.setArguments(recipeArgs);
+            //TODO Implement function for fragment
+            //dialog.show();
     }
 
     public void OnIngredientsListFragmentInteractionListener(Ingredient item) {
@@ -82,6 +87,11 @@ public class MainActivity extends AppCompatActivity implements RecipeFragment.On
         args.putString("name", item.getName());
         dialog.setArguments(args);
         dialog.show(getSupportFragmentManager(), "UpdateIng");
+    }
+
+    @Override
+    public void OnRecipeDescriptionInteractionListener(RecipeDescription item) {
+
     }
 
     private class AppPageAdapter extends FragmentStatePagerAdapter {

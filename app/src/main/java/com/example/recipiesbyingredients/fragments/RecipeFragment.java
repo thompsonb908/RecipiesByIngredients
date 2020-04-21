@@ -16,6 +16,7 @@ import com.example.recipiesbyingredients.R;
 import com.example.recipiesbyingredients.dummy.DummyContent;
 import com.example.recipiesbyingredients.dummy.DummyContent.DummyItem;
 import com.example.recipiesbyingredients.fragments.viewadapter.MyRecipeRecyclerViewAdapter;
+import com.example.recipiesbyingredients.models.Recipie;
 
 /**
  * A fragment representing a list of Items.
@@ -71,7 +72,8 @@ public class RecipeFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyRecipeRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            //TODO Load the saved recipes into the viewed adapator.
+            //recyclerView.setAdapter(new MyRecipeRecyclerViewAdapter(Recipie.ITEMS, mListener));
         }
         return view;
     }
@@ -106,6 +108,7 @@ public class RecipeFragment extends Fragment {
      */
     public interface OnRecipeListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void OnRecipeListFragmentInteractionListener(DummyItem item);
+        void OnRecipeListFragmentInteractionListener(Recipie item);
+
     }
 }
