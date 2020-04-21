@@ -13,7 +13,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.recipiesbyingredients.firebase.Recipies;
-import com.example.recipiesbyingredients.fragments.dialogs.RecipeDescription;
+//import com.example.recipiesbyingredients.fragments.dialogs.RecipeDescription;
 import com.example.recipiesbyingredients.fragments.dialogs.EditIngredientFragment;
 import com.example.recipiesbyingredients.fragments.IngredientsFragment;
 import com.example.recipiesbyingredients.fragments.IngredientsPageFragment;
@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity implements RecipeFragment.OnRecipeListFragmentInteractionListener, IngredientsFragment.OnIngredientsListFragmentInteractionListener, RecipeDescription.OnRecipeDescriptionFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements RecipeFragment.OnRecipeListFragmentInteractionListener, IngredientsFragment.OnIngredientsListFragmentInteractionListener {
 
     private FirebaseAuth mAuth;
 
@@ -70,11 +70,11 @@ public class MainActivity extends AppCompatActivity implements RecipeFragment.On
     //TODO Link to Recipe Description fragment
     public void OnRecipeListFragmentInteractionListener(Recipie item) {
             //Creating a new intent to start the other activity.
-            DialogFragment dialog = new RecipeDescription();
-            Bundle recipeArgs = new Bundle();
-            recipeArgs.putString("name", item.getName());
-            dialog.setArguments(recipeArgs);
-            //TODO Implement function for fragment
+//            DialogFragment dialog = new RecipeDescription();
+//            Bundle recipeArgs = new Bundle();
+//            recipeArgs.putString("name", item.getName());
+//            dialog.setArguments(recipeArgs);
+//            //TODO Implement function for fragment
             //dialog.show();
     }
 
@@ -89,10 +89,10 @@ public class MainActivity extends AppCompatActivity implements RecipeFragment.On
         dialog.show(getSupportFragmentManager(), "UpdateIng");
     }
 
-    @Override
-    public void OnRecipeDescriptionInteractionListener(RecipeDescription item) {
-
-    }
+//    @Override
+//    public void OnRecipeDescriptionInteractionListener(RecipeDescription item) {
+//
+//    }
 
     private class AppPageAdapter extends FragmentStatePagerAdapter {
 

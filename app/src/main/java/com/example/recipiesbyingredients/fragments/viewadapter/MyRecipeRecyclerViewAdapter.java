@@ -5,12 +5,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.recipiesbyingredients.models.Recipie;
 import com.example.recipiesbyingredients.R;
 import com.example.recipiesbyingredients.fragments.RecipeFragment.OnRecipeListFragmentInteractionListener;
 import com.example.recipiesbyingredients.dummy.DummyContent.DummyItem;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -47,6 +49,7 @@ public class MyRecipeRecyclerViewAdapter extends RecyclerView.Adapter<MyRecipeRe
 
         //Will set the recipe to the name that is passed.
         holder.mNameView.setText(holder.mItem.getName());
+        Picasso.with(holder.mView.getContext()).load(holder.mItem.getImgURL()).into(holder.mImage);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,23 +70,20 @@ public class MyRecipeRecyclerViewAdapter extends RecyclerView.Adapter<MyRecipeRe
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mContentView;
         public final TextView mNameView;
-
+        public final ImageView mImage;
         public Recipie mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mContentView = (TextView) view.findViewById(R.id.content);
-
-            //Create something differeent
             mNameView = (TextView) view.findViewById(R.id.name);
+            mImage = (ImageView) view.findViewById(R.id.recipe_image);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + mItem.getName() + "'";
         }
     }
 }
