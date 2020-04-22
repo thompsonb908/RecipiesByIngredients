@@ -11,6 +11,10 @@ public class Ingredient {
         this.quantity = quantity;
     }
 
+    public String toString(){
+        return quantity + ": " + name;
+    }
+
     public String getName() {
         return name;
     }

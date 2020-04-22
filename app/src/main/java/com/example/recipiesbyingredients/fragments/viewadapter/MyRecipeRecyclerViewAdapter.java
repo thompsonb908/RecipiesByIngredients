@@ -1,20 +1,20 @@
 package com.example.recipiesbyingredients.fragments.viewadapter;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.recipiesbyingredients.models.Recipie;
 import com.example.recipiesbyingredients.R;
-import com.example.recipiesbyingredients.fragments.RecipeFragment.OnRecipeListFragmentInteractionListener;
 import com.example.recipiesbyingredients.dummy.DummyContent.DummyItem;
+import com.example.recipiesbyingredients.fragments.RecipeFragment.OnRecipeListFragmentInteractionListener;
+import com.example.recipiesbyingredients.models.Recipie;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the

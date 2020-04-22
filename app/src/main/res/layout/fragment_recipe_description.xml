@@ -18,11 +18,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Recipe Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#000000"
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/recipe_Image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@android:drawable/ic_delete" />
@@ -30,19 +31,40 @@
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_height="10dp"
             android:background="?android:attr/listDivider" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ingredient_List"
+        <TextView
+            android:id="@+id/Ingredients_Na"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:text="Ingredients "
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            tools:text="Ingredients" />
+
+        <TextView
+            android:id="@+id/ingredients_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:scrollbars = "vertical"/>
 
         <View
             android:id="@+id/divider4"
             android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_height="10dp"
             android:background="?android:attr/listDivider" />
+
+        <TextView
+            android:id="@+id/Instructions_NA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Instructions"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/recipe_Instructions"
@@ -50,7 +72,14 @@
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textColor="#000000"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:scrollbars = "vertical"/>
+
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Recipe" />
 
     </LinearLayout>
 

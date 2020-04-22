@@ -13,18 +13,21 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.recipiesbyingredients.firebase.Recipies;
-//import com.example.recipiesbyingredients.fragments.dialogs.RecipeDescription;
+import com.example.recipiesbyingredients.fragments.dialogs.RecipeDescription;
 import com.example.recipiesbyingredients.fragments.dialogs.EditIngredientFragment;
 import com.example.recipiesbyingredients.fragments.IngredientsFragment;
 import com.example.recipiesbyingredients.fragments.IngredientsPageFragment;
 import com.example.recipiesbyingredients.fragments.RecipeFragment;
 import com.example.recipiesbyingredients.fragments.SavedFragment;
 import com.example.recipiesbyingredients.fragments.SearchFragment;
+import com.example.recipiesbyingredients.models.DatabaseHelper;
 import com.example.recipiesbyingredients.models.Ingredient;
 import com.example.recipiesbyingredients.models.Recipie;
 import com.google.android.material.tabs.TabLayout;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -68,12 +71,34 @@ public class MainActivity extends AppCompatActivity implements RecipeFragment.On
     //TODO Link to Recipe Description fragment
     public void OnRecipeListFragmentInteractionListener(Recipie item) {
             //Creating a new intent to start the other activity.
-//            DialogFragment dialog = new RecipeDescription();
-//            Bundle recipeArgs = new Bundle();
-//            recipeArgs.putString("name", item.getName());
-//            dialog.setArguments(recipeArgs);
-//            //TODO Implement function for fragment
-            //dialog.show();
+            DialogFragment dialog = new RecipeDescription();
+            Bundle recipeArgs = new Bundle();
+            //Sending Name,Image,Ingredients,Instructions respectively
+            recipeArgs.putString("name", item.getName());
+            //recipeArgs.putAll(item.getImgURL());
+
+            //---------- Converting Ingredients List to Array List -------------//
+            ArrayList<String> ingredients = new ArrayList<>();
+            for(Ingredient i:item.getIngredients()){
+                ingredients.add(i.toString());
+            }
+            recipeArgs.putStringArrayList("ingredients", ingredients);
+
+            //------------------------------------------------------------------//
+
+            //--------- Converting Instructions List to Array List -------------//
+            ArrayList<String> instruct = new ArrayList<>();
+            for (String s:item.getInstructions()
+                ) {
+                instruct.add(s);
+            }
+            recipeArgs.putStringArrayList("instruction", instruct);
+
+            //-----------------------------------------------------------------//
+
+            dialog.setArguments(recipeArgs);
+            //TODO Implement function for fragment
+            dialog.show(getSupportFragmentManager(), "Recipe Description");
     }
 
     public void OnIngredientsListFragmentInteractionListener(Ingredient item) {
@@ -86,11 +111,6 @@ public class MainActivity extends AppCompatActivity implements RecipeFragment.On
         dialog.setArguments(args);
         dialog.show(getSupportFragmentManager(), "UpdateIng");
     }
-
-//    @Override
-//    public void OnRecipeDescriptionInteractionListener(RecipeDescription item) {
-//
-//    }
 
     private class AppPageAdapter extends FragmentStatePagerAdapter {
 
