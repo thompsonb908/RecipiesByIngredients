@@ -11,10 +11,10 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "Ingredients.db";
 
-    private static final String SQL_CREATE_INGREDIENTS = "CREATE TABLE INGREDIENTS (_id INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, QUANTITY INTEGER)";
+    private static final String SQL_CREATE_INGREDIENTS = "CREATE TABLE INGREDIENTS (_id INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, QUANTITY TEXT)";
     private static final String SQL_DELETE_INGREDIENTS = "DROP TABLE IF EXISTS INGREDIENTS";
 
     private static DatabaseHelper dbInstance;
@@ -56,7 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM INGREDIENTS WHERE " + filter, null);
         List<Ingredient> list = new ArrayList<Ingredient>();
         while(cursor.moveToNext()) {
-            list.add(new Ingredient(cursor.getString(cursor.getColumnIndex("NAME")), cursor.getInt(cursor.getColumnIndex("QUANTITY"))));
+            list.add(new Ingredient(cursor.getString(cursor.getColumnIndex("NAME")), cursor.getString(cursor.getColumnIndex("QUANTITY"))));
             list.get(list.size()-1).setId(cursor.getInt(cursor.getColumnIndex(("_id"))));
         }
         cursor.close();
@@ -95,7 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM INGREDIENTS", null);
         List<Ingredient> list = new ArrayList<Ingredient>();
         while(cursor.moveToNext()) {
-            list.add(new Ingredient(cursor.getString(cursor.getColumnIndex("NAME")), cursor.getInt(cursor.getColumnIndex("QUANTITY"))));
+            list.add(new Ingredient(cursor.getString(cursor.getColumnIndex("NAME")), cursor.getString(cursor.getColumnIndex("QUANTITY"))));
             list.get(list.size()-1).setId(cursor.getInt(cursor.getColumnIndex(("_id"))));
         }
         cursor.close();

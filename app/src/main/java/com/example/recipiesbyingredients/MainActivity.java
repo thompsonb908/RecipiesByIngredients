@@ -47,8 +47,6 @@ public class MainActivity extends AppCompatActivity implements RecipeFragment.On
         FirebaseUser user = mAuth.getCurrentUser();
         Toast.makeText(this,"Welcome " + user.getEmail(), Toast.LENGTH_LONG);
 
-        Recipies.search("Test");
-
         ViewPager vp = (ViewPager) findViewById(R.id.content_container);
         AppPageAdapter pa = new AppPageAdapter(getSupportFragmentManager());
         vp.setOffscreenPageLimit(3);

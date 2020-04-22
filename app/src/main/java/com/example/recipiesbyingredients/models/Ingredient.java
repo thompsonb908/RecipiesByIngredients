@@ -3,10 +3,10 @@ package com.example.recipiesbyingredients.models;
 public class Ingredient {
 
     private String name;
-    private int quantity;
+    private String quantity;
     private int  id = -1;
 
-    public Ingredient(String name, int quantity) {
+    public Ingredient(String name, String quantity) {
         this.name = name;
         this.quantity = quantity;
     }
@@ -19,11 +19,11 @@ public class Ingredient {
         this.name = name;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 

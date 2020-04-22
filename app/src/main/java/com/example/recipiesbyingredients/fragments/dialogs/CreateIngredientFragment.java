@@ -40,7 +40,7 @@ public class CreateIngredientFragment extends DialogFragment {
 
                 String name = nameText.getText().toString();
                 String quantityString = quantityText.getText().toString();
-                int quantity = Integer.parseInt(quantityString);
+                String quantity = quantityString;
                 db.createIngredient(new Ingredient(name, quantity));
 
                 closeFragment();

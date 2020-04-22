@@ -40,7 +40,7 @@ public class Recipies {
 
             List<Ingredient> ingredients = new ArrayList<Ingredient>();
             for(Map<String, Object> ingredient : (ArrayList<Map<String, Object>>) data.get("ingredients")) {
-                ingredients.add(new Ingredient((String) ingredient.get("name"), ((Long) ingredient.get("quantity")).intValue()));
+                ingredients.add(new Ingredient((String) ingredient.get("name"), (String) ingredient.get("quantity")));
             }
 
             recipies.add(new Recipie((String) data.get("name"), ingredients, (ArrayList<String>) data.get("instructions"), (String) data.get("img")));

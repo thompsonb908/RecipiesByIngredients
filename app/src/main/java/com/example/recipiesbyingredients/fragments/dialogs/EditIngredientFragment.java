@@ -34,7 +34,7 @@ public class EditIngredientFragment extends DialogFragment {
         update.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 final EditText quantityUpdate = (EditText) view.findViewById(R.id.updateIngredientQuantity);
-                int quantity = Integer.parseInt(quantityUpdate.getText().toString());
+                String quantity = quantityUpdate.getText().toString();
 
                 DatabaseHelper db = DatabaseHelper.getInstance(v.getContext());
 
@@ -50,7 +50,7 @@ public class EditIngredientFragment extends DialogFragment {
         delete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 DatabaseHelper db = DatabaseHelper.getInstance(v.getContext());
-                Ingredient ing = new Ingredient(args.getString("name"), 0);
+                Ingredient ing = new Ingredient(args.getString("name"), "0");
                 ing.setId(args.getInt("id"));
                 Log.d("DB", "Deleting " + ing.getName() + " ID: " + ing.getId());
                 db.deleteIngredient(ing);
