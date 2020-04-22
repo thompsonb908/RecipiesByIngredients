@@ -20,16 +20,32 @@ import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SavedFragment extends Fragment {
 
     private RecipeFragment.OnRecipeListFragmentInteractionListener mListener;
+    Timer refresher = null;
+    TimerTask refresh = new TimerTask() {
+        @Override
+        public void run() {
+            getFragmentManager().beginTransaction().detach(SavedFragment.this).attach(SavedFragment.this).commit();
+            Log.d("Refresh", "Refreshing Ingredients List");
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_saved, container, false);
         SharedPreferences pref = getActivity().getSharedPreferences("MyPref",Context.MODE_PRIVATE);
         Gson gson = new Gson();
+
+        if(refresher == null) {
+            Log.d("Timers", "Saved Refresh Started");
+            refresher = new Timer();
+            refresher.schedule(refresh, 0, 1000);
+        }
 
         ArrayList<Recipie> recipes = new ArrayList<>();
         Map<String,?> map = pref.getAll();

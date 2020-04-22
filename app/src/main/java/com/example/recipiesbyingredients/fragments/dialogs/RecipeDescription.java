@@ -60,7 +60,6 @@ public class RecipeDescription extends DialogFragment {
         //Utilizing XML id's to create variables for manipulation later.
         final Bundle args = this.getArguments();
         final TextView recipe_name = (TextView) view.findViewById(R.id.recipe_Name);
-        final ImageView recipe_image = (ImageView) view.findViewById(R.id.recipe_Image);
         final TextView recipe_instructions = (TextView) view.findViewById(R.id.recipe_Instructions);
         final TextView recipe_ingredients = (TextView) view.findViewById(R.id.ingredients_list);
         //final RecyclerView recipe_Results = (RecyclerView) view.findViewById(R.id.ingredient_List);
