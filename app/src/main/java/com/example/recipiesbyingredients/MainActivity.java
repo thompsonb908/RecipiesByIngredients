@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -35,7 +36,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity implements RecipeFragment.OnRecipeListFragmentInteractionListener, IngredientsFragment.OnIngredientsListFragmentInteractionListener {
 
     private FirebaseAuth mAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements RecipeFragment.On
             recipeArgs.putStringArrayList("instruction", instruct);
 
             //-----------------------------------------------------------------//
+
+            recipeArgs.putSerializable("recipe",item);
 
             dialog.setArguments(recipeArgs);
             //TODO Implement function for fragment

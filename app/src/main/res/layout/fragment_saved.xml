@@ -1,19 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".fragments.SavedFragment" >
+    tools:context=".fragments.SavedFragment">
 
-    <fragment
-        android:id="@+id/fragment2"
-        android:name="com.example.recipiesbyingredients.fragments.RecipeFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20px"
+        android:orientation="vertical">
+
+<!--        <SearchView-->
+<!--            android:id="@+id/recipeSearch"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+<!---->
+<!--        </SearchView>-->
+
+
+        <!-- Add another one. right under to create the vertical search -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/saved_recipes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:scrollbars="vertical"
+            app:layoutManager="LinearLayoutManager"
+            tools:context=".fragments.SearchFragment"
+            tools:listitem="@layout/fragment_recipe" />
+
+    </LinearLayout>
+
+</FrameLayout>

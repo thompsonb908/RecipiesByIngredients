@@ -3,6 +3,7 @@ package com.example.recipiesbyingredients.fragments.dialogs;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
@@ -29,9 +30,12 @@ import com.example.recipiesbyingredients.fragments.viewadapter.MyIngredientRecyc
 import com.example.recipiesbyingredients.models.DatabaseHelper;
 import com.example.recipiesbyingredients.models.Ingredient;
 import com.example.recipiesbyingredients.models.Recipie;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,7 +44,7 @@ import java.util.List;
  */
 public class RecipeDescription extends DialogFragment {
     private int mColumnCount = 2;
-    private IngredientsFragment.OnIngredientsListFragmentInteractionListener mListener;
+//    private IngredientsFragment.OnIngredientsListFragmentInteractionListener mListener;
     private List<Ingredient> ingredients = new ArrayList<Ingredient>();
 
     @Override
@@ -48,6 +52,10 @@ public class RecipeDescription extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.fragment_recipe_description, null);
+
+        SharedPreferences pref = getActivity().getSharedPreferences("MyPref",MODE_PRIVATE);
+        final SharedPreferences.Editor editor = pref.edit();
+        final Gson gson = new Gson();
 
         //Utilizing XML id's to create variables for manipulation later.
         final Bundle args = this.getArguments();
@@ -84,6 +92,9 @@ public class RecipeDescription extends DialogFragment {
         //TODO Add saving Functionality for Button
         save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                String json = gson.toJson(args.getSerializable("recipe"));
+                editor.putString(args.getString("name")+' '+"recipe", json);
+                editor.commit();
                 close();
             };
         });

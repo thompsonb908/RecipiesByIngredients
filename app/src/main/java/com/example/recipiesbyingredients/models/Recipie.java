@@ -1,8 +1,9 @@
 package com.example.recipiesbyingredients.models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Recipie {
+public class Recipie implements Serializable {
 
     private String name;
     private List<Ingredient> ingredients;
